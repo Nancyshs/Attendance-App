@@ -28,13 +28,13 @@ def apply_windows(session: LectureSession, before_start: str | None, before_end:
     for phase, start, end in (("before", before_start, before_end), ("after", after_start, after_end)):
         a, b = _clock(start), _clock(end)
         if (a is None) != (b is None):
-            raise ServiceError(f"حددي بداية ونهاية امتحان {labels[phase]} معاً", code="exam_window")
+            raise ServiceError(f"حدد بداية ونهاية امتحان {labels[phase]} معاً", code="exam_window")
         if a is not None and b is not None and b <= a:
             raise ServiceError(f"نهاية امتحان {labels[phase]} يجب أن تكون بعد بدايته", code="exam_window")
         parsed[phase] = (a, b)
     before, after = parsed["before"], parsed["after"]
     if before[0] and after[0] and before[0] < after[1] and after[0] < before[1]:
-        raise ServiceError("وقتا الامتحان قبل المحاضرة وبعدها متداخلان، اجعلي كل فترة في وقت مختلف", code="exam_window")
+        raise ServiceError("وقتا الامتحان قبل المحاضرة وبعدها متداخلان، اجعل كل فترة في وقت مختلف", code="exam_window")
     session.exam_before_opens_at = local_datetime_to_utc(session.day, before[0]) if before[0] else None
     session.exam_before_closes_at = local_datetime_to_utc(session.day, before[1]) if before[1] else None
     session.exam_after_opens_at = local_datetime_to_utc(session.day, after[0]) if after[0] else None
@@ -44,7 +44,7 @@ def apply_windows(session: LectureSession, before_start: str | None, before_end:
 def open_for(session: LectureSession, phase: str, minutes: int) -> None:
     """Open one sitting from this moment, for the number of minutes chosen."""
     if phase not in PHASES:
-        raise ServiceError("اختاري قبل المحاضرة أو بعدها", code="exam_window")
+        raise ServiceError("اختار قبل المحاضرة أو بعدها", code="exam_window")
     if minutes < 1 or minutes > 1440:
         raise ServiceError("المدة من دقيقة إلى 1440 دقيقة", code="exam_window")
     now = utcnow().replace(microsecond=0)
@@ -58,7 +58,7 @@ def open_for(session: LectureSession, phase: str, minutes: int) -> None:
 def close_for(session: LectureSession, phase: str) -> None:
     """Close one sitting immediately, the same way a survey is closed."""
     if phase not in PHASES:
-        raise ServiceError("اختاري قبل المحاضرة أو بعدها", code="exam_window")
+        raise ServiceError("اختار قبل المحاضرة أو بعدها", code="exam_window")
     now = utcnow().replace(microsecond=0)
     span = _span(session, phase)
     opens = span[0] if span and span[0] <= now else now
@@ -78,7 +78,7 @@ def replace_questions(db: Session, session: LectureSession, questions: list[Any]
     """Replace the written questions. Refused once anyone has already sat the exam."""
     incoming = [(q.text.strip(), bool(q.correct)) for q in questions if q.text.strip()]
     if any(not q.text.strip() for q in questions):
-        raise ServiceError("اكتبي نص كل سؤال", code="exam_question")
+        raise ServiceError("اكتب نص كل سؤال", code="exam_question")
     current = [(q.text, q.correct) for q in session.exam_questions]
     if incoming == current:
         return

@@ -252,16 +252,16 @@ TRUST_PROXY=false
     @"
 تم تثبيت برنامج الحضور والتقييم
 
-على هذا الجهاز افتحي:
+على هذا الجهاز افتح:
 http://localhost:$port
 
-من أي جهاز آخر على الشبكة افتحي:
+من أي جهاز آخر على الشبكة افتح:
 http://${ip}:$port
 
 اسم المستخدم: admin
 كلمة السر: $adminPassword
 
-احتفظي بهذه الورقة. بعد الدخول يمكن تغيير كلمة السر من داخل البرنامج.
+احتفظ بهذه الورقة. بعد الدخول يمكن تغيير كلمة السر من داخل البرنامج.
 "@ | Set-Content -LiteralPath $note -Encoding utf8
 
     Write-Log "Starting the program on port $port."

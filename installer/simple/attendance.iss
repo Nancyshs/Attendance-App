@@ -51,16 +51,16 @@ begin
     'MySQL',
     'MySQL root password',
     'Enter the MySQL root password.' + #13#10 +
-    'ادخلي كلمة مرور root الخاصة بـ MySQL.' + #13#10 +
+    'ادخل كلمة مرور root الخاصة بـ MySQL.' + #13#10 +
     'MySQL must already be installed. This setup does not install it.' + #13#10 +
-    'لو root من غير كلمة سر، سيبي الخانة فاضية.');
+    'لو root من غير كلمة سر، سيب الخانة فاضية.');
   MysqlPage.Add('Password:', True);
 
   AdminPage := CreateInputQueryPage(MysqlPage.ID,
     'Administrator',
     'Create the program password',
     'Choose a password for the admin account.' + #13#10 +
-    'اختاري كلمة مرور حساب المدير داخل البرنامج.');
+    'اختار كلمة مرور حساب المدير داخل البرنامج.');
   AdminPage.Add('Password:', True);
   AdminPage.Add('Confirm password:', True);
 end;

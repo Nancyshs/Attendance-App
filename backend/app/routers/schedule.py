@@ -203,7 +203,7 @@ def _validate_times(body: SessionIn) -> None:
     if parse_hhmm(body.end_time) <= parse_hhmm(body.start_time):
         raise ServiceError("وقت النهاية يجب أن يكون بعد وقت البداية", code="invalid_time")
     if body.survey_until_end_of_day and body.survey_duration_minutes:
-        raise ServiceError("اختاري إما فتح الاستبيان لآخر اليوم أو لمدة محددة بالدقائق", code="survey_window")
+        raise ServiceError("اختار إما فتح الاستبيان لآخر اليوم أو لمدة محددة بالدقائق", code="survey_window")
 
 
 def _ensure_training_day(db: Session, day: date) -> None:
@@ -459,7 +459,7 @@ def open_exam_now(
     if s is None:
         raise NotFound("المحاضرة غير موجودة")
     if not s.exam_questions:
-        raise ServiceError("أضيفي أسئلة الامتحان أولاً", code="no_questions")
+        raise ServiceError("أضف أسئلة الامتحان أولاً", code="no_questions")
     open_for(s, body.phase, body.minutes)
     audit(db, user, "exam_opened", "session", s.id, {"phase": body.phase, "minutes": body.minutes}, request)
     db.commit()

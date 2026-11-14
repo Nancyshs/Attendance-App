@@ -76,7 +76,7 @@ export default function ExamReport({ part }: { part: ExamPart }) {
       </div>
 
       {sessions.isLoading || report.isLoading ? <Spinner /> : sessions.error ? <ErrorBox error={sessions.error} onRetry={sessions.refetch} /> : !chosen ? (
-        <Card><EmptyState title={t('No exam in this range', 'لا يوجد امتحان في هذه الفترة')} hint={t('Add exam questions to a lecture first.', 'أضيفي أسئلة الامتحان للمحاضرة أولاً.')} /></Card>
+        <Card><EmptyState title={t('No exam in this range', 'لا يوجد امتحان في هذه الفترة')} hint={t('Add exam questions to a lecture first.', 'أضف أسئلة الامتحان للمحاضرة أولاً.')} /></Card>
       ) : report.error || !report.data ? <ErrorBox error={report.error} onRetry={report.refetch} /> : report.data.rows.length === 0 ? (
         <Card><EmptyState title={t('No one has sat this exam yet', 'لم يمتحن أحد بعد')} /></Card>
       ) : part === 'compare' ? (

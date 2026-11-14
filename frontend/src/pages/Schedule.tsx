@@ -207,7 +207,7 @@ function SessionsTab({ isAdmin }: { isAdmin: boolean }) {
               />
               {t('Stay open until the end of the day', 'مفتوح لآخر اليوم')}
             </label>
-            <Field label={t('Stays open for (minutes)', 'يفضل مفتوح (دقائق)')} hint={t('Choose either the end of the day or a number of minutes.', 'اختاري واحدة: إما لآخر اليوم أو عدد الدقائق.')} className="sm:col-span-3">
+            <Field label={t('Stays open for (minutes)', 'يفضل مفتوح (دقائق)')} hint={t('Choose either the end of the day or a number of minutes.', 'اختار واحدة: إما لآخر اليوم أو عدد الدقائق.')} className="sm:col-span-3">
               <Input
                 type="number"
                 min={1}

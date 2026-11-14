@@ -98,7 +98,7 @@ export default function ExamEditor({ session, onClose, onSaved }: { session: Ses
       <div className="mb-5">
         <p className="text-lg font-bold text-slate-900">{session.title}</p>
         <p className="mt-1 text-sm text-slate-500">{fmtDay(session.day)} · {session.start_time}–{session.end_time}</p>
-        <p className="mt-2 text-sm text-slate-600">{t('Write the questions only. Trainees answer each one with True or False. You open the exam, and choose its duration, from the QR screen.', 'اكتبي الأسئلة فقط. المتدرب يجاوب بصح أو غلط. فتح الامتحان ومدته من شاشة الرمز، في الوقت اللي تختاريه.')}</p>
+        <p className="mt-2 text-sm text-slate-600">{t('Write the questions only. Trainees answer each one with True or False. You open the exam, and choose its duration, from the QR screen.', 'اكتب الأسئلة فقط. المتدرب يجاوب بصح أو غلط. فتح الامتحان ومدته من شاشة الرمز، في الوقت اللي تختاره.')}</p>
       </div>
 
       <div className="mb-4 rounded-2xl border border-brand-200 bg-brand-50 p-4">
@@ -107,7 +107,7 @@ export default function ExamEditor({ session, onClose, onSaved }: { session: Ses
         <textarea
           value={bulk}
           rows={4}
-          placeholder={t('Paste the questions here, one per line', 'الصقي الأسئلة هنا، كل سؤال في سطر')}
+          placeholder={t('Paste the questions here, one per line', 'الصق الأسئلة هنا، كل سؤال في سطر')}
           onChange={(e) => setBulk(e.target.value)}
           onPaste={(e) => {
             const text = e.clipboardData.getData('text')
@@ -141,7 +141,7 @@ export default function ExamEditor({ session, onClose, onSaved }: { session: Ses
               value={q.text}
               autoFocus={i === 0}
               rows={2}
-              placeholder={t('Write the question here', 'اكتبي السؤال هنا')}
+              placeholder={t('Write the question here', 'اكتب السؤال هنا')}
               onChange={(e) => update(q.key, e.target.value)}
               onPaste={(e) => {
                 const text = e.clipboardData.getData('text')
