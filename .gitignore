@@ -1,0 +1,15 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+frontend/dist/
+backend/data/
+backups/
+logs/
+logs_dev_*.txt
+installer/cache/
+installer/staging/
+installer/tmp/
+installer/simple/staging/

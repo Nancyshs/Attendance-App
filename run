@@ -1,0 +1,20 @@
+; cd e:\backend\Attendance_App\backend
+; .venv\Scripts\python -m uvicorn app.main:app --reload
+
+
+
+
+
+; cd e:\backend\Attendance_App\frontend
+; npm run dev
+
+
+
+; بيانات الدخول للبرنامج:
+
+; اسم المستخدم: admin
+; الباسورد: Admin12345
+; بيانات قاعدة البيانات (MySQL):
+
+; root / root
+; attendance / devpass123

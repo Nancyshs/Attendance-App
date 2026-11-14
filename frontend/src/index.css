@@ -1,0 +1,261 @@
+@import "tailwindcss";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-700.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-500.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-600.css";
+@import "@fontsource/ibm-plex-sans-arabic/arabic-700.css";
+@import "@fontsource/ibm-plex-sans-arabic/latin-400.css";
+@import "@fontsource/ibm-plex-sans-arabic/latin-600.css";
+
+/*
+  Design tokens derived from the Ertekaa logo: deep forest green + olive leaf greens.
+  Remapping Tailwind's palettes here recolours every screen consistently.
+*/
+@theme {
+  /* Inter for Latin glyphs, IBM Plex Sans Arabic for Arabic glyphs (browser picks per character) */
+  --font-sans: "Inter", "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+
+  /* primary: logo green */
+  --color-brand-50: #eff7f4;
+  --color-brand-100: #d7ebe3;
+  --color-brand-200: #b0d6c7;
+  --color-brand-300: #82bba8;
+  --color-brand-400: #4f9c86;
+  --color-brand-500: #1f7d68;
+  --color-brand-600: #0d5c4d;
+  --color-brand-700: #0a4a3e;
+  --color-brand-800: #083a31;
+  --color-brand-900: #052b24;
+
+  /* deep green: sidebar, hero, headings */
+  --color-navy-700: #0b3f35;
+  --color-navy-800: #06352c;
+  --color-navy-900: #00332a;
+  --color-navy-950: #001d17;
+
+  /* olive accent (leaves of the logo) */
+  --color-olive-50: #f6f8ee;
+  --color-olive-100: #e9eed7;
+  --color-olive-200: #d3deb0;
+  --color-olive-300: #b8c986;
+  --color-olive-400: #9db364;
+  --color-olive-500: #839a4b;
+  --color-olive-600: #667a38;
+  --color-olive-700: #50602d;
+
+  /* legacy aliases used across pages */
+  --color-sage-50: #f4f7f5;
+  --color-sage-100: #e9efec;
+  --color-sage-200: #d9e3de;
+  --color-sage-300: #b8c986;
+  --color-sage-500: #839a4b;
+
+  /* neutrals: very slightly green-tinted */
+  --color-slate-50: #f7f9f8;
+  --color-slate-100: #eff3f1;
+  --color-slate-200: #e1e8e4;
+  --color-slate-300: #c9d5ce;
+  --color-slate-400: #8fa197;
+  --color-slate-500: #62756c;
+  --color-slate-600: #4a5c53;
+  --color-slate-700: #35453d;
+  --color-slate-800: #1e2d27;
+  --color-slate-900: #0e1d18;
+  --color-slate-950: #07130f;
+
+  --color-indigo-100: #e9eed7;
+  --color-indigo-400: #9db364;
+  --color-indigo-500: #839a4b;
+  --color-indigo-600: #667a38;
+  --color-indigo-700: #50602d;
+  --color-indigo-800: #3f4c24;
+
+  --color-sky-200: #b0d6c7;
+  --color-sky-300: #82bba8;
+
+  --shadow-xs: 0 1px 2px rgba(14, 29, 24, 0.05);
+  --shadow-card: 0 1px 3px rgba(14, 29, 24, 0.07), 0 1px 2px rgba(14, 29, 24, 0.04);
+  --shadow-pop: 0 16px 40px -12px rgba(14, 29, 24, 0.28), 0 4px 12px rgba(14, 29, 24, 0.08);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f4f7f5;
+  color: var(--color-slate-900);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang="ar"] body {
+  line-height: 1.7;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-button {
+  display: none;
+}
+*::-webkit-scrollbar-thumb {
+  background: #c4d2ca;
+  border-radius: 8px;
+}
+
+::selection {
+  background: var(--color-brand-100);
+  color: var(--color-brand-900);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-brand-600);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* custom select chevron, mirrored in RTL */
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2362756c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-inline-end: 2.25rem;
+}
+[dir="rtl"] .select {
+  background-position: left 0.75rem center;
+}
+
+/* keep numbers and times left-to-right inside Arabic text */
+.num {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* ---------------------------------------------------------------- motion */
+@keyframes pop {
+  0% {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.pop {
+  animation: pop 0.16s ease-out;
+}
+@keyframes page-in {
+  0% {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+.page-in {
+  animation: page-in 0.22s ease-out;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-slate-100);
+  border-radius: 0.5rem;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  animation: shimmer 1.4s infinite;
+}
+[dir="rtl"] .skeleton::after {
+  transform: translateX(100%);
+  animation-name: shimmer-rtl;
+}
+@keyframes shimmer-rtl {
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pop,
+  .page-in,
+  .skeleton::after {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------- brand surfaces */
+.brand-hero {
+  background:
+    radial-gradient(900px 420px at 0% -10%, rgba(157, 179, 100, 0.35) 0%, transparent 60%),
+    radial-gradient(700px 400px at 100% 0%, rgba(31, 125, 104, 0.45) 0%, transparent 55%),
+    linear-gradient(160deg, #001d17 0%, #00332a 55%, #0a4a3e 100%);
+}
+.sidebar-bg {
+  background: linear-gradient(180deg, #00332a 0%, #002a23 100%);
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ---- print (paper survey) ---- */
+@page {
+  size: A4;
+  margin: 8mm;
+}
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  .print-page {
+    width: auto !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 4mm !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
